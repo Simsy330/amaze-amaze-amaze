@@ -33,15 +33,21 @@
     nav {
       background: white;
       padding: 15px;
-      text-align: center;
+      text-align: space-between;
       border-bottom: 1px solid #e0e0e0;
       position: sticky;
       top: 0;
       z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav > div:first-child {
+      display: flex;
+      gap: 20px;
     }
     nav a {
       color: #2c3e50;
-      margin: 0 20px;
       text-decoration: none;
       font-weight: 500;
       cursor: pointer;
@@ -50,6 +56,101 @@
     }
     nav a:hover {
       color: #3498db;
+    }
+    .login-btn-nav {
+      background: #3498db;
+      color: white !important;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .login-btn-nav:hover {
+      background: #2980b9;
+      color: white !important;
+    }
+    .user-info {
+      color: #2c3e50;
+      font-size: 14px;
+      display: none;
+    }
+    .user-info.visible {
+      display: block;
+    }
+    .logout-btn {
+      color: #e74c3c;
+      cursor: pointer;
+      margin-left: 10px;
+      text-decoration: none;
+    }
+    .logout-btn:hover {
+      color: #c0392b;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal.show {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 350px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .modal-close {
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #999;
+    }
+    .modal-close:hover {
+      color: #000;
+    }
+    .modal h2 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+    .modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .modal-form input {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .modal-form button {
+      padding: 10px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .modal-form button:hover {
+      background: #2980b9;
+    }
+    .error-msg {
+      color: #e74c3c;
+      font-size: 13px;
+      display: none;
     }
     .container {
       padding: 20px;
@@ -82,6 +183,26 @@
       color: white;
       font-size: 13px;
     }
+    .restricted {
+      display: none;
+    }
+    .restricted.visible {
+      display: block;
+    }
+    .login-prompt {
+      background: #3498db;
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .login-prompt a {
+      color: white;
+      text-decoration: underline;
+      font-weight: bold;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -92,21 +213,112 @@
 </header>
 
 <nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="project.html">Projects</a>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="project.html">Projects</a>
+  </div>
+  <div>
+    <span class="user-info" id="userInfo">Welcome, <span id="username"></span> <a href="#" class="logout-btn" onclick="logout(event)">Logout</a></span>
+    <a href="#" class="login-btn-nav" id="loginBtn" onclick="openLoginModal(event)">Login</a>
+  </div>
 </nav>
+
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeLoginModal()">&times;</span>
+    <h2>Login</h2>
+    <div class="error-msg" id="errorMsg"></div>
+    <form class="modal-form" onsubmit="handleLogin(event)">
+      <input type="text" id="username-input" placeholder="Username" required>
+      <input type="password" id="password-input" placeholder="Password" required>
+      <button type="submit">Sign In</button>
+    </form>
+    <p style="text-align: center; font-size: 12px; color: #95a5a6; margin-top: 15px;">Demo: matthew / password123</p>
+  </div>
+</div>
 
 <div class="container">
   <div class="card">
     <h2>Home</h2>
-    <p>Welcome to my website.</p>
+    <p>Welcome to my website. This is the public section that everyone can see.</p>
   </div>
-  </div>
+  
+
+</div>
 
 <footer>
   <p>Valid as at 28/03/2026</p>
 </footer>
+
+<script>
+  function openLoginModal(event) {
+    event.preventDefault();
+    document.getElementById('loginModal').classList.add('show');
+  }
+  
+  function closeLoginModal() {
+    document.getElementById('loginModal').classList.remove('show');
+    document.getElementById('errorMsg').style.display = 'none';
+  }
+  
+  function handleLogin(event) {
+    event.preventDefault();
+    const username = document.getElementById('username-input').value;
+    const password = document.getElementById('password-input').value;
+    const errorMsg = document.getElementById('errorMsg');
+    
+    if (username === 'matthew' && password === 'password123') {
+      localStorage.setItem('loggedIn', 'true');
+      localStorage.setItem('username', username);
+      closeLoginModal();
+      checkLogin();
+    } else {
+      errorMsg.textContent = 'Invalid username or password';
+      errorMsg.style.display = 'block';
+    }
+  }
+  
+  function checkLogin() {
+    const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+    const restrictedContent = document.getElementById('restrictedContent');
+    const loginPrompt = document.getElementById('loginPrompt');
+    const userInfo = document.getElementById('userInfo');
+    const loginBtn = document.getElementById('loginBtn');
+    const username = localStorage.getItem('username');
+    
+    if (isLoggedIn) {
+      restrictedContent.classList.add('visible');
+      loginPrompt.style.display = 'none';
+      userInfo.classList.add('visible');
+      loginBtn.style.display = 'none';
+      document.getElementById('username').textContent = username;
+    } else {
+      restrictedContent.classList.remove('visible');
+      loginPrompt.style.display = 'block';
+      userInfo.classList.remove('visible');
+      loginBtn.style.display = 'block';
+    }
+  }
+  
+  function logout(event) {
+    event.preventDefault();
+    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('username');
+    checkLogin();
+  }
+  
+  // Close modal when clicking outside
+  window.onclick = function(event) {
+    const modal = document.getElementById('loginModal');
+    if (event.target == modal) {
+      closeLoginModal();
+    }
+  }
+  
+  // Check login status on page load
+  checkLogin();
+</script>
 
 </body>
 </html>
