@@ -6,28 +6,50 @@
   <title>My Website</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       margin: 0;
-      background: #f5f5f5;
-      color: #333;
+      background: #fafafa;
+      color: #2c3e50;
+      line-height: 1.6;
     }
     header {
-      background: #4f46e5;
+      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
       color: white;
-      padding: 20px;
+      padding: 40px 20px;
       text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+    header p {
+      margin: 8px 0 0 0;
+      font-size: 14px;
+      opacity: 0.9;
     }
     nav {
-      background: #4338ca;
-      padding: 10px;
+      background: white;
+      padding: 15px;
       text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     nav a {
-      color: white;
-      margin: 0 10px;
+      color: #2c3e50;
+      margin: 0 20px;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 500;
       cursor: pointer;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #3498db;
     }
     .container {
       padding: 20px;
@@ -36,15 +58,97 @@
     }
     .card {
       background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       margin-bottom: 20px;
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #2c3e50;
+      font-size: 28px;
+      font-weight: 600;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+    }
+    .card p {
+      text-align: justify;
+      line-height: 1.8;
+      color: #34495e;
+    }
+    .about-container {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+    .about-text {
+      flex: 1;
+    }
+    .profile-image {
+      flex-shrink: 0;
+      width: 250px;
+      height: 250px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: 3px solid #3498db;
+    }
+    @media (max-width: 768px) {
+      .about-container {
+        flex-direction: column;
+      }
+      .profile-image {
+        width: 100%;
+        height: auto;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+    }
+    .social-links {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      font-size: 24px;
+    }
+    .social-links a[href*="mailto"] {
+      background: #EA4335;
+      color: white;
+    }
+    .social-links a[href*="linkedin"] {
+      background: #0A66C2;
+      color: white;
+    }
+    .social-links a[href*="github"] {
+      background: #333333;
+      color: white;
+    }
+    .social-links a[href*="twitter"] {
+      background: #000000;
+      color: white;
+    }
+    .social-links a:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
     }
     footer {
       text-align: center;
-      padding: 15px;
-      background: #e5e7eb;
+      padding: 20px;
+      background: #2c3e50;
+      color: white;
+      font-size: 13px;
     }
   </style>
 </head>
@@ -52,7 +156,7 @@
 
 <header>
   <h1>My Brain's Additional Storage</h1>
-  <p>I thoroughly denounce all ideas contained within.</p>
+  <p>I thoroughly disavow all ideas contained within.</p>
 </header>
 
 <nav>
@@ -62,9 +166,29 @@
 </nav>
 
   <div class="card">
+    <div class="social-links">
+      <a href="mailto:matthewsims330@gmail.com" title="Email" aria-label="Email">✉️</a>
+      <a href="https://linkedin.com/in/matthewsims330" title="LinkedIn" target="_blank" aria-label="LinkedIn">in</a>
+      <a href="https://github.com/Simsy330" title="GitHub" target="_blank" aria-label="GitHub">⚙️</a>
+      <a href="https://twitter.com/1Simsy1" title="X" target="_blank" aria-label="X">𝕏</a>
+    </div>
+  
     <h2>About</h2>
-    <p>This section tells you about the website.</p>
-  </div>
+    <div class="about-container">
+      <img src="Mugshot.jpg" alt="Profile photo" class="profile-image">
+      <div class="about-text">
+    <p>I’m a Mathematics graduate from the University of Warwick and a technical data analyst specialising in automated
+       analytical workflows, high‑reliability reporting, and interactive data tools. I work extensively with R, Python, 
+       and SQL to clean, validate, and model large datasets, and I build dashboards and reproducible workflows that make 
+       complex analysis accessible to stakeholders.</p>
+       <p>In my current role as a Research Analyst at the Universities and Colleges Employers Association, I design and deliver 
+        end‑to‑end data processes for sector‑wide surveys, develop Shiny dashboards, and model multi‑billion‑pound pay scenarios 
+        for over 300,000 higher education staff. My work focuses on accuracy, clarity, and building systems that scale.</p>
+        <p>I enjoy translating technical requirements into robust solutions, improving data quality, and collaborating across teams 
+          to deliver reliable outputs under tight deadlines. Outside of work, I’ve volunteered with the Trussell Trust, supporting 
+          food distribution and contributing to process improvements during high‑demand periods.</p>      </div>
+    </div>  </div>
+
 </div>
 
 <footer>
