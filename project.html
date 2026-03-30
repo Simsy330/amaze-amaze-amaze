@@ -53,26 +53,7 @@
 
   <!-- Restricted Content -->
   <div class="restricted" id="restrictedContent">
-    <div class="project-grid">
-      <div class="project-card">
-        <h3>R - Statistical Analysis</h3>
-        <div class="code-block">
-<span class="comment"># Load and summarize data</span>
-library(tidyverse)
-library(shiny)
 
-data &lt;- read_csv(<span class="string">'survey_results.csv'</span>)
-
-summary_stats &lt;- data %&gt;%
-  group_by(department) %&gt;%
-  summarise(
-    mean_salary = mean(salary),
-    count = n()
-  ) %&gt;%
-  arrange(desc(mean_salary))
-        </div>
-      </div>
-    </div>
 
     <div class="dashboard-section">
       <h3>Live Dashboard: Finance Analytics</h3>
