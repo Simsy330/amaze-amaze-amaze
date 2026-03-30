@@ -4,271 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Website</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      margin: 0;
-      background: #fafafa;
-      color: #2c3e50;
-      line-height: 1.6;
-    }
-    header {
-      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    header h1 {
-      margin: 0;
-      font-size: 32px;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-    }
-    header p {
-      margin: 8px 0 0 0;
-      font-size: 14px;
-      opacity: 0.9;
-    }
-    nav {
-      background: white;
-      padding: 15px;
-      border-bottom: 1px solid #e0e0e0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav > div {
-      display: flex;
-      gap: 20px;
-    }
-    nav a {
-      color: #2c3e50;
-      text-decoration: none;
-      font-weight: 500;
-      cursor: pointer;
-      font-size: 15px;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #3498db;
-    }
-    .login-btn-nav {
-      background: #3498db;
-      color: white !important;
-      padding: 8px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .login-btn-nav:hover {
-      background: #2980b9;
-      color: white !important;
-    }
-    .user-info {
-      color: #2c3e50;
-      font-size: 14px;
-      display: none;
-    }
-    .user-info.visible {
-      display: block;
-    }
-    .logout-btn {
-      color: #e74c3c;
-      cursor: pointer;
-      margin-left: 10px;
-      text-decoration: none;
-    }
-    .logout-btn:hover {
-      color: #c0392b;
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-    }
-    .modal.show {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      background-color: white;
-      padding: 30px;
-      border-radius: 8px;
-      width: 90%;
-      max-width: 350px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    }
-    .modal-close {
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-      color: #999;
-    }
-    .modal-close:hover {
-      color: #000;
-    }
-    .modal h2 {
-      margin-top: 0;
-      color: #2c3e50;
-    }
-    .modal-form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 20px;
-    }
-    .modal-form input {
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-    .modal-form button {
-      padding: 10px;
-      background: #3498db;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .modal-form button:hover {
-      background: #2980b9;
-    }
-    .error-msg {
-      color: #e74c3c;
-      font-size: 13px;
-      display: none;
-    }
-    .container {
-      padding: 20px;
-      max-width: none;
-      width: 100%;
-      margin: auto;
-    }
-    .card {
-      background: white;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      margin-bottom: 20px;
-    }
-    .card h2 {
-      margin-top: 0;
-      color: #2c3e50;
-      font-size: 28px;
-      font-weight: 600;
-      border-bottom: 2px solid #3498db;
-      padding-bottom: 10px;
-    }
-    .card p {
-      line-height: 1.8;
-      color: #34495e;
-    }
-    .project-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .project-card {
-      background: #f8f9fa;
-      border-left: 4px solid #3498db;
-      padding: 20px;
-      border-radius: 4px;
-    }
-    .project-card h3 {
-      margin-top: 0;
-      color: #2c3e50;
-      font-size: 18px;
-    }
-    .code-block {
-      background: #2c3e50;
-      color: #ecf0f1;
-      padding: 15px;
-      border-radius: 4px;
-      overflow-x: auto;
-      font-family: 'Courier New', monospace;
-      font-size: 13px;
-      line-height: 1.5;
-      margin: 10px 0;
-    }
-    .code-block .keyword { color: #e74c3c; }
-    .code-block .string { color: #2ecc71; }
-    .code-block .comment { color: #95a5a6; }
-    .code-block .function { color: #3498db; }
-    .dashboard-section {
-      margin-top: 30px;
-    }
-    .dashboard-section h3 {
-      color: #2c3e50;
-      margin-top: 20px;
-      margin-bottom: 10px;
-    }
-    .dashboard-embed {
-      width: 100%;
-      height: 1200px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    .restricted {
-      display: none;
-    }
-    .restricted.visible {
-      display: block;
-    }
-    .login-prompt {
-      background: #3498db;
-      color: white;
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .login-prompt a {
-      color: white;
-      text-decoration: underline;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .logout-btn {
-      color: #e74c3c;
-      cursor: pointer;
-      font-weight: bold;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .logout-btn:hover {
-      color: #c0392b;
-    }
-    .user-info {
-      display: none;
-      color: #2c3e50;
-      font-size: 14px;
-    }
-    .user-info.visible {
-      display: block;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #2c3e50;
-      color: white;
-      font-size: 13px;
-    }
-  </style>
+  <link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
@@ -304,7 +40,7 @@
 </div>
 
 
-<div class="container">
+<div class="container-full">
 
 <div class="card">
   <h2>Code Snippets & Projects</h2>
@@ -317,26 +53,7 @@
 
   <!-- Restricted Content -->
   <div class="restricted" id="restrictedContent">
-    <div class="project-grid">
-      <div class="project-card">
-        <h3>R - Statistical Analysis</h3>
-        <div class="code-block">
-<span class="comment"># Load and summarize data</span>
-library(tidyverse)
-library(shiny)
 
-data &lt;- read_csv(<span class="string">'survey_results.csv'</span>)
-
-summary_stats &lt;- data %&gt;%
-  group_by(department) %&gt;%
-  summarise(
-    mean_salary = mean(salary),
-    count = n()
-  ) %&gt;%
-  arrange(desc(mean_salary))
-        </div>
-      </div>
-    </div>
 
     <div class="dashboard-section">
       <h3>Live Dashboard: Finance Analytics</h3>
@@ -350,15 +67,20 @@ summary_stats &lt;- data %&gt;%
   <p>Valid as at 28/03/2026</p>
 </footer>
 
+<script src="script.js"></script>
 <script>
+  // Page-specific adaptations
   function openLoginModal(event) {
     event.preventDefault();
-    document.getElementById('loginModal').classList.add('show');
+    const modal = document.getElementById('loginModal');
+    if (modal) modal.classList.add('show');
   }
   
   function closeLoginModal() {
-    document.getElementById('loginModal').classList.remove('show');
-    document.getElementById('errorMsg').style.display = 'none';
+    const modal = document.getElementById('loginModal');
+    const errorMsg = document.getElementById('errorMsg');
+    if (modal) modal.classList.remove('show');
+    if (errorMsg) errorMsg.style.display = 'none';
   }
   
   function handleLogin(event) {
@@ -371,10 +93,12 @@ summary_stats &lt;- data %&gt;%
       localStorage.setItem('loggedIn', 'true');
       localStorage.setItem('username', username);
       closeLoginModal();
-      checkLogin();
+      location.reload();
     } else {
-      errorMsg.textContent = 'Invalid username or password';
-      errorMsg.style.display = 'block';
+      if (errorMsg) {
+        errorMsg.textContent = 'Invalid username or password';
+        errorMsg.style.display = 'block';
+      }
     }
   }
   
@@ -387,16 +111,16 @@ summary_stats &lt;- data %&gt;%
     const username = localStorage.getItem('username');
     
     if (isLoggedIn) {
-      restrictedContent.classList.add('visible');
-      loginPrompt.style.display = 'none';
-      userInfo.classList.add('visible');
-      loginBtn.style.display = 'none';
-      document.getElementById('username').textContent = username;
+      if (restrictedContent) restrictedContent.classList.add('visible');
+      if (loginPrompt) loginPrompt.style.display = 'none';
+      if (userInfo) userInfo.classList.add('visible');
+      if (loginBtn) loginBtn.style.display = 'none';
+      if (username) document.getElementById('username').textContent = username;
     } else {
-      restrictedContent.classList.remove('visible');
-      loginPrompt.style.display = 'block';
-      userInfo.classList.remove('visible');
-      loginBtn.style.display = 'block';
+      if (restrictedContent) restrictedContent.classList.remove('visible');
+      if (loginPrompt) loginPrompt.style.display = 'block';
+      if (userInfo) userInfo.classList.remove('visible');
+      if (loginBtn) loginBtn.style.display = 'block';
     }
   }
   
@@ -405,14 +129,6 @@ summary_stats &lt;- data %&gt;%
     localStorage.removeItem('loggedIn');
     localStorage.removeItem('username');
     checkLogin();
-  }
-  
-  // Close modal when clicking outside
-  window.onclick = function(event) {
-    const modal = document.getElementById('loginModal');
-    if (event.target == modal) {
-      closeLoginModal();
-    }
   }
   
   // Check login status on page load
