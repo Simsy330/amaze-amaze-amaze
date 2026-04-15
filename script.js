@@ -1,6 +1,4 @@
-/* ========================================
-   AUTHENTICATION & USER MANAGEMENT
-   ======================================== */
+
 
 /**
  * Initialize authentication status on page load
@@ -32,7 +30,7 @@ function updateNavForLoggedInUser(username) {
     loginBtn.style.display = 'none';
   }
 
-  // Show restricted content
+
   const restrictedElements = document.querySelectorAll('.restricted');
   restrictedElements.forEach(el => el.classList.add('visible'));
 }
@@ -52,7 +50,7 @@ function updateNavForLoggedOutUser() {
     loginBtn.style.display = 'block';
   }
 
-  // Hide restricted content
+
   const restrictedElements = document.querySelectorAll('.restricted');
   restrictedElements.forEach(el => el.classList.remove('visible'));
 }
@@ -67,7 +65,7 @@ function handleLogin(event) {
   const password = document.getElementById('password').value;
   const errorMsg = document.getElementById('errorMsg');
 
-  // Simple authentication (for demo purposes)
+
   if (username === 'matthew' && password === 'password123') {
     localStorage.setItem('loggedIn', 'true');
     localStorage.setItem('username', username);
@@ -89,9 +87,7 @@ function handleLogout() {
   window.location.href = 'index.html';
 }
 
-/* ========================================
-   MODAL FUNCTIONALITY
-   ======================================== */
+
 
 /**
  * Open a modal by ID
@@ -128,7 +124,7 @@ function initModals() {
     });
   });
 
-  // Close modal when clicking outside of content
+
   const modals = document.querySelectorAll('.modal');
   modals.forEach(modal => {
     modal.addEventListener('click', function(event) {
@@ -139,9 +135,7 @@ function initModals() {
   });
 }
 
-/* ========================================
-   PAGE INITIALIZATION
-   ======================================== */
+
 
 /**
  * Initialize all page functionality
