@@ -100,6 +100,67 @@ function openModal(modalId) {
 }
 
 /**
+ * Generate Poisson-distributed random number
+ */
+function poissonRandom(lambda) {
+  let L = Math.exp(-lambda);
+  let p = 1;
+  let k = 0;
+
+  do {
+    k++;
+    p *= Math.random();
+  } while (p > L);
+
+  return k - 1;
+}
+
+/**
+ * Run football match simulation with predicted goals
+ */
+function runSimulation(lambdaA, lambdaB) {
+  const goalsA = poissonRandom(lambdaA);
+  const goalsB = poissonRandom(lambdaB);
+
+  const teamA = document.getElementById('teamA').value;
+  const teamB = document.getElementById('teamB').value;
+
+  const resultsDiv = document.getElementById('simulationResults');
+  if (!resultsDiv) return;
+
+  let result = '';
+  if (goalsA > goalsB) {
+    result = `${teamA} wins`;
+  } else if (goalsB > goalsA) {
+    result = `${teamB} wins`;
+  } else {
+    result = 'Draw';
+  }
+
+  resultsDiv.innerHTML = `
+    <div class="simulation-result">
+      <h3>Predicted Match Result</h3>
+      <div class="score-display">
+        <div class="team-score">
+          <p class="team-name">${teamA}</p>
+          <p class="score">${goalsA}</p>
+        </div>
+        <div class="vs">vs</div>
+        <div class="team-score">
+          <p class="team-name">${teamB}</p>
+          <p class="score">${goalsB}</p>
+        </div>
+      </div>
+      <p class="result-text"><strong>${result}</strong></p>
+    </div>
+  `;
+  resultsDiv.style.display = 'block';
+}
+
+// Initialize auth on page load
+window.addEventListener('DOMContentLoaded', initAuth);
+
+/**
  * Close a modal by ID
  */
 function closeModal(modalId) {
