@@ -18,6 +18,7 @@
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="project.html">Projects</a>
+    <a href="league.html">League Table</a>
   </div>
   <div>
     <span class="user-info" id="userInfo">Welcome, <span id="username"></span> <a href="#" class="logout-btn" onclick="logout(event)">Logout</a></span>
@@ -44,7 +45,27 @@
     <h2>Home</h2>
     <p>Welcome to my website. This is the public section that everyone can see.</p>
   </div>
-  
+
+  <div class="card">
+    <h2>Football Match Simulator</h2>
+    <p>Predict the outcome of Premier League matches based on historical team performance.</p>
+    
+    <div class="simulator-section">
+      <div class="team-selector">
+        <label for="teamA">Home Team:</label>
+        <select id="teamA"></select>
+      </div>
+      
+      <div class="team-selector">
+        <label for="teamB">Away Team:</label>
+        <select id="teamB"></select>
+      </div>
+      
+      <button onclick="simulateFromAPI()" class="simulate-btn">Simulate Match</button>
+    </div>
+    
+    <div id="simulationResults" style="display: none;"></div>
+  </div>
 
 </div>
 
@@ -53,6 +74,7 @@
 </footer>
 
 <script src="script.js"></script>
+<script src="api.js"></script>
 <script>
   // Page-specific adaptations
   function openLoginModal(event) {
